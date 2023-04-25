@@ -1,22 +1,31 @@
 import model
+import view
 
 
 class Controller():
-
+    """нужен для взаимодействия view и model"""
     def __init__(self):
-        model.model
+        self.model = model()
+        self.view = view
 
 
-    def handler(self, input):
-        match input:
-            case 1:##add
+    def handler(self, command):
+        match command:
+            case "add":##add
 
-            case 2:##edit
+            case "edit":##edit
 
-            case 3:##get
+            case "show":##show
 
-            case 4:##remove
+            case "rem":##remove
 
-            case 5:##save
+            case "save":##save
 
-            case 6:##exit
+            case "exit":##exit
+
+            case "help":##help
+
+    def start(self):
+        while True:
+            user_choice = view.input()
+            handler(user_choice)

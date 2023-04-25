@@ -1,10 +1,10 @@
 import datetime
 import json
-import time
+import traceback
 
 
 class model():
-    """отвечает за любое взаимодействие с данными"""
+    """отвечает за работу с данными"""
 
     def __init__(self):
         try:
@@ -45,16 +45,28 @@ class model():
         notes_all = self.data["notes"]
         return notes_all
 
-    def edit_note(self, id, head, body):
-        self.data["notes"][id - 1]["head"] = head
-        self.data["notes"][id - 1]["body"] = body
+    def edit_note(self, id_, head, body):
+        self.data["notes"][id_ - 1]["head"] = head
+        self.data["notes"][id_ - 1]["body"] = body
+
+    def remove_note(self, id_):
+        self.data.get("notes").pop(id_ - 1)
+
+    def save_data(self):
+        try:
+            with open("database.json", "w", encoding="UTF8") as db:
+                json.dump(self.data, db)
+        except Exception:
+            traceback.print_exc()
+
 
 model = model()
 print(model.get_data())
-print(model.get_all_notes())
-print(model.get_note_id(1))
-print(model.get_note_date("25.04.2023"))
+# print(model.get_all_notes())
+# print(model.get_note_id(1))
+# print(model.get_note_date("25.04.2023"))
 
 # model.add_note("dsfgs", "sdgsdg")
 # print(model.get_data())
 # print(datetime.datetime.today().strftime("%H:%M:%S"))
+# model.save_data()
