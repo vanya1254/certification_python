@@ -1,7 +1,10 @@
+import model
+
+
 class Controller():
 
     def __init__(self):
-
+        model.model
 
 
     def handler(self, input):
