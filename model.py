@@ -12,9 +12,9 @@ class model():
         except FileNotFoundError:
             print("File 'database.json' not found.\nCreated new.")
             with open("database.json", "w", encoding="UTF8") as db:
-                sample_data = {"count": 0, "notes": [{}]}
-                json.dump(sample_data, db)
-                self.data = sample_data
+                SAMPLE_DATA = {"count": 0, "notes": [{}]}
+                json.dump(SAMPLE_DATA, db)
+                self.data = SAMPLE_DATA
 
 
     def get_data(self):
