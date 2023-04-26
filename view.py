@@ -2,14 +2,15 @@ class View():
     """отвечает за взаимодействие с пользователем"""
 
     def __init__(self):
-        self.HELP = ["\t\t\t***HELP***:",
-                     "\t\tCommands:",
-                     "\tadd - add note",
-                     "\tedit - edit note",
-                     "\tget - show note(s)",
-                     "\trem - remove note",
-                     "\tsave - save changes",
-                     "\texit - close program"
+        self.HELP = ["\t\t***HELP***\n",
+                     "Commands:",
+                     "\t'add' - add note",
+                     "\t'edit' - edit note",
+                     "\t'get' - show note(s)\n"
+                     "\t    'get -a' - show all",
+                     "\t'rem' - remove note",
+                     "\t'save' - save changes",
+                     "\t'exit' - close program"
                      ]
         self.INPUT_COMMAND = "\nEnter command: "
         self.INPUT_CHOICE = "Enter number: "
@@ -17,7 +18,8 @@ class View():
         self.INPUT_HEAD = "Enter the head of note: "
         self.INPUT_BODY = "Enter the body of note: "
         self.INPUT_DATE = "\nEnter the date of note(s): "
-        self.END = "\nThe end of program."
+        self.INPUT_Y_N = "\nY/n? "
+        self.END = "\n\n\nThe end of program."
         self.count_data = 0
         self.note = {}
 
@@ -45,7 +47,7 @@ class View():
     def show_get(self):
         print("\nBy which tag do you want to search?:\n",
               "\t1. ID\n",
-              "\t2. Date (ex. dd.mm.yyyy)",
+              "\t2. Date (ex. dd.mm.yy)",
               )
         choice = self.check_choice()
         return choice
@@ -74,11 +76,24 @@ class View():
     def show_remove(self):
         id_ = self.show_get_id()
         print(f"\nAre you sure you want to delete note with ID: {id_}?")
-        answer = input("\nY/n? ").lower()
+        answer = input(self.INPUT_Y_N).lower()
         if answer == "y":
             return id_
         else:
             return 0
+
+    def show_save(self):
+        print("\nAre you sure you want to save the data?")
+        answer = input(self.INPUT_Y_N).lower()
+        if answer == "y":
+            return "y"
+        else:
+            return "n"
+
+    def show_help(self):
+        print()
+        for line in self.HELP:
+            print(f"{line}")
 
     def check_id(self):
         count_condition = True
@@ -116,10 +131,10 @@ class View():
             try:
                 dd = int(user_date_split[0])
                 mm = int(user_date_split[1])
-                yyyy = int(user_date_split[2])
+                yy = int(user_date_split[2])
                 return user_date
             except Exception:
-                print(f"\nExample: dd.mm.yyyy\n"
+                print(f"\nExample: dd.mm.yy\n"
                       f"Your wrong date: {user_date}")
 
     def show_exit(self):

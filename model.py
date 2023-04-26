@@ -64,15 +64,3 @@ class Model():
                 json.dump(self.data, db)
         except Exception:
             traceback.print_exc()
-
-
-# model = model()
-# print(model.get_data())
-# print(model.get_all_notes())
-# print(model.get_note_id(1))
-# print(model.get_note_date("25.04.2023"))
-
-# model.add_note("dsfgs", "sdgsdg")
-# print(model.get_data())
-# print(datetime.datetime.today().strftime("%H:%M:%S"))
-# model.save_data()
