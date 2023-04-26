@@ -55,6 +55,7 @@ class Model():
         self.data["notes"][id_ - 1]["body"] = body
 
     def remove_note(self, id_):
+        self.data["count"] = self.data.get("count") - 1
         self.data.get("notes").pop(id_ - 1)
 
     def save_data(self):
