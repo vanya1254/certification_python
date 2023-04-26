@@ -3,7 +3,7 @@ import json
 import traceback
 
 
-class model():
+class Model():
     """отвечает за работу с данными"""
 
     def __init__(self):
@@ -21,7 +21,11 @@ class model():
     def get_data(self):
         return self.data
 
-    def add_note(self, head, body):
+    def get_count(self):
+        return self.data["count"]
+
+    def add_note(self, description):
+        head, body = description
         new_note = {"id": self.data["count"] + 1, "date": datetime.date.today().strftime("%d.%m.%y"),
                     "time": datetime.datetime.today().strftime("%H:%M:%S"), "head": head, "body": body}
 
@@ -45,7 +49,8 @@ class model():
         notes_all = self.data["notes"]
         return notes_all
 
-    def edit_note(self, id_, head, body):
+    def edit_note(self, description):
+        id_, head, body = description
         self.data["notes"][id_ - 1]["head"] = head
         self.data["notes"][id_ - 1]["body"] = body
 
@@ -60,8 +65,8 @@ class model():
             traceback.print_exc()
 
 
-model = model()
-print(model.get_data())
+# model = model()
+# print(model.get_data())
 # print(model.get_all_notes())
 # print(model.get_note_id(1))
 # print(model.get_note_date("25.04.2023"))

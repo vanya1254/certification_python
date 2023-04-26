@@ -4,28 +4,34 @@ import view
 
 class Controller():
     """нужен для взаимодействия view и model"""
+
     def __init__(self):
-        self.model = model()
-        self.view = view
+        self.model = model.Model()
+        self.view = view.View()
 
-
-    def handler(self, command):
+    def switch(self, command):
         match command:
-            case "add":##add
+            case "add":
+                self.model.add_note(self.view.show_add())
+            case "edit":
+                self.return_count()
+                self.model.edit_note(self.view.show_edit())
 
-            case "edit":##edit
+            # case "show":##show
+            #
+            # case "rem":##remove
 
-            case "show":##show
+            # case "save":##save
 
-            case "rem":##remove
+            case "exit":
+                self.view.show_exit()
 
-            case "save":##save
+            # case "help":##help
 
-            case "exit":##exit
-
-            case "help":##help
+    def return_count(self):
+        self.view.set_count_data(self.model.get_count())
 
     def start(self):
         while True:
-            user_choice = view.input()
-            handler(user_choice)
+            user_choice = self.view.input()
+            self.switch(user_choice)
