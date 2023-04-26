@@ -16,11 +16,17 @@ class Controller():
             case "edit":
                 self.return_count()
                 self.model.edit_note(self.view.show_edit())
-
-            # case "show":##show
-            #
-            # case "rem":##remove
-
+            case "get":
+                self.return_count()
+                if self.view.show_get() == 1:
+                    self.view.show_note(self.model.get_note_id(self.view.show_get_id()))
+                else:
+                    self.view.show_notes(self.model.get_note_date(self.view.show_get_date()))
+            case "rem":
+                self.return_count()
+                choice = self.view.show_remove()
+                if choice != 0:
+                    self.model.remove_note(choice)
             # case "save":##save
 
             case "exit":
