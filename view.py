@@ -28,7 +28,7 @@ class View():
         self.count_data = count
 
     def input(self):
-        user_cmd = input(self.INPUT_COMMAND)
+        user_cmd = input(self.INPUT_COMMAND).lower()
         return user_cmd
 
     def show_add(self):
