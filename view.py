@@ -8,6 +8,7 @@ class View():
                      "\t'edit' - edit note",
                      "\t'get' - show note(s)\n"
                      "\t    'get -a' - show all",
+                     "\t    'get -af' - show all with date filtering",
                      "\t'rem' - remove note",
                      "\t'save' - save changes",
                      "\t'exit' - close program"
@@ -72,6 +73,10 @@ class View():
         else:
             for note in notes:
                 self.show_note(note)
+
+    def show_filter(self, filter_notes):
+        print("\nSorted notes by date:")
+        self.show_notes(filter_notes)
 
     def show_remove(self):
         id_ = self.show_get_id()

@@ -66,3 +66,11 @@ class Model():
                 json.dump(self.data, db)
         except Exception:
             traceback.print_exc()
+
+    def filter_date_data(self):
+        filter_note = []
+        for item in self.data.get("notes"):
+            filter_note.append(item)
+        filter_note.sort(key=lambda x: x["date"])
+
+        return filter_note

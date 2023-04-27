@@ -25,6 +25,9 @@ class Controller():
             case "get -a":
                 self.return_count()
                 self.view.show_notes(self.model.get_all_notes())
+            case "get -af":
+                self.return_count()
+                self.view.show_filter(self.model.filter_date_data())
             case "rem":
                 self.return_count()
                 choice = self.view.show_remove()
