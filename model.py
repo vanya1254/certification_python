@@ -51,6 +51,8 @@ class Model():
 
     def edit_note(self, description):
         id_, head, body = description
+        self.data["notes"][id_ - 1]["date"] = datetime.date.today().strftime("%d.%m.%y")
+        self.data["notes"][id_ - 1]["time"] = datetime.datetime.today().strftime("%H:%M:%S")
         self.data["notes"][id_ - 1]["head"] = head
         self.data["notes"][id_ - 1]["body"] = body
 
