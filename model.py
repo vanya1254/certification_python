@@ -51,6 +51,8 @@ class Model():
 
     def edit_note(self, description):
         id_, head, body = description
+        self.data["notes"][id_ - 1]["date"] = datetime.date.today().strftime("%d.%m.%y")
+        self.data["notes"][id_ - 1]["time"] = datetime.datetime.today().strftime("%H:%M:%S")
         self.data["notes"][id_ - 1]["head"] = head
         self.data["notes"][id_ - 1]["body"] = body
 
@@ -65,14 +67,10 @@ class Model():
         except Exception:
             traceback.print_exc()
 
+    def filter_date_data(self):
+        filter_note = []
+        for item in self.data.get("notes"):
+            filter_note.append(item)
+        filter_note.sort(key=lambda x: x["date"])
 
-# model = model()
-# print(model.get_data())
-# print(model.get_all_notes())
-# print(model.get_note_id(1))
-# print(model.get_note_date("25.04.2023"))
-
-# model.add_note("dsfgs", "sdgsdg")
-# print(model.get_data())
-# print(datetime.datetime.today().strftime("%H:%M:%S"))
-# model.save_data()
+        return filter_note
